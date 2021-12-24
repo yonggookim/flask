@@ -20,9 +20,13 @@ es = Elasticsearch(hosts='localhost', port=9200)
 
 list= es.indices.get_alias('*')
 
+
+
 bodys = {}
 
 app = Flask(__name__) # Flask 모듈을 사용할 수 있게 된다?
+
+app.config['JSON_AS_ASCII'] = False # : 아스키코드를 이용하여 한글텍스트 제대로 뽑기
 
 # ----------- 학습을 위한 간단한 UI 생성(HTML사용법 in Python) -----------
 
@@ -36,6 +40,7 @@ def es_home():
         <a href='indices.get'> indices.get </a><br>
         <a href='get_alias'> get_alias </a><br>
         <a href='index_list'> index_list </a>
+    <ul>
     '''
     return html
 
